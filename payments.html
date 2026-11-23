@@ -11,6 +11,15 @@
 
     <title>Payments | MediTrust Health Centre</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Website Styles -->
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Load EmailJS first -->
@@ -26,11 +35,11 @@
   <body>
     <header class="site-header">
       <div class="container nav-container">
-        <a href="index.html" class="logo">
-          <span class="logo-mark">M</span>
-          <span class="logo-text">
+        <a href="index.html" class="brand">
+          <span class="brand-icon">✚</span>
+          <span class="brand-name">
             MediTrust
-            <small>Health Centre</small>
+            <small>HEALTH CENTRE</small>
           </span>
         </a>
 
@@ -53,6 +62,7 @@
 
           <button
             class="menu-toggle"
+            id="menuToggle"
             type="button"
             aria-label="Open navigation menu"
             aria-controls="mainNav"
@@ -357,13 +367,38 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
       <div class="container">
-        <p>
-          &copy; <span id="currentYear"></span>
-          MediTrust Health Centre. All rights reserved.
-        </p>
-        <p>Kakuma, Turkana County, Kenya.</p>
+        <div class="grid-3">
+          <div>
+            <h3 style="color: white">MediTrust Health Centre</h3>
+            <p>Your Health, Our Priority.</p>
+            <p>Kakuma, Turkana County, Kenya</p>
+          </div>
+
+          <div>
+            <h3 style="color: white">Quick Links</h3>
+            <p><a href="about.html">About Us</a></p>
+            <p><a href="services.html">Our Services</a></p>
+            <p><a href="health-education.html">Health Education</a></p>
+            <p><a href="team.html">Our Team</a></p>
+            <p><a href="payments.html">Payments</a></p>
+          </div>
+
+          <div>
+            <h3 style="color: white">Contact</h3>
+            <p><a href="contact.html">Contact & Appointments</a></p>
+            <p>Healthcare information and enquiries</p>
+            <p><a href="payments.html">Payments</a></p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © <span id="year"></span> MediTrust Health Centre. All rights
+            reserved.
+          </p>
+        </div>
       </div>
     </footer>
   </body>

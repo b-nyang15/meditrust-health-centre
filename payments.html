@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Make secure healthcare payments to MediTrust Health Centre in Kakuma, Kenya."
+    />
+
+    <title>Payments | MediTrust Health Centre</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Load EmailJS first -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+
+    <!-- Load website interactions second -->
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">M</span>
+          <span class="logo-text">
+            MediTrust
+            <small>Health Centre</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="health-education.html">Health Education</a>
+          <a href="team.html">Our Team</a>
+          <a href="contact.html">Contact</a>
+          <a href="payments.html" class="nav-cta active" aria-current="page">
+            Payments
+          </a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" aria-label="Switch theme">
+            🌙
+          </button>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="mainNav"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <span class="section-tag">SIMPLE & CONVENIENT PAYMENTS</span>
+
+          <h1>Healthcare Payments</h1>
+
+          <p>
+            Pay for healthcare services at MediTrust Health Centre using your
+            preferred payment method. Follow the instructions carefully and keep
+            your transaction confirmation message.
+          </p>
+
+          <a href="#payment-methods" class="btn btn-primary">
+            Make a Payment
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="payment-methods">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-tag">PAYMENT OPTIONS</span>
+            <h2>Choose Your Payment Method</h2>
+            <p>Select the payment option that is most convenient for you.</p>
+          </div>
+
+          <div class="payment-methods-grid">
+            <div class="payment-card">
+              <h3>M-Pesa Payment</h3>
+              <p>Send your payment directly to our M-Pesa number.</p>
+              <h4>0707623164</h4>
+              <p>
+                Recipient name: Confirm the name displayed by M-Pesa before
+                sending.
+              </p>
+              <p>Keep your M-Pesa confirmation message.</p>
+            </div>
+
+            <div class="payment-card">
+              <h3>Equity PayBill</h3>
+              <p>Pay through M-Pesa using Equity Bank PayBill.</p>
+              <h4>247247</h4>
+              <p>Account number: 1650183866480</p>
+              <p>Keep your M-Pesa confirmation message.</p>
+            </div>
+
+            <div class="payment-card">
+              <h3>Direct Bank Transfer</h3>
+              <p>Transfer your payment directly to our Equity account.</p>
+              <h4>1650183866480</h4>
+              <p>Account holder: Nyang Both Manyal</p>
+              <p>Keep your bank transaction confirmation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section payment-categories">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-tag">HEALTHCARE SERVICES</span>
+            <h2>What Are You Paying For?</h2>
+            <p>Select the healthcare service related to your payment.</p>
+          </div>
+
+          <div class="payment-category-list">
+            <div class="payment-category">
+              <span>01</span>
+              <h3>Consultation Fees</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>02</span>
+              <h3>Laboratory Tests & Services</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>03</span>
+              <h3>Medication & Pharmacy</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>04</span>
+              <h3>Appointment Booking Fees</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>05</span>
+              <h3>Antenatal Care (ANC) Services</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>06</span>
+              <h3>Maternal & Child Healthcare</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>07</span>
+              <h3>Medical Procedures & Treatment</h3>
+            </div>
+
+            <div class="payment-category">
+              <span>08</span>
+              <h3>Other Healthcare Services</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section payment-form-section" id="payment-form">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-tag">PAYMENT DETAILS</span>
+            <h2>Prepare Your Payment</h2>
+            <p>
+              Enter the details below before proceeding with your selected
+              payment method.
+            </p>
+          </div>
+
+          <form id="paymentForm" class="payment-form">
+            <div class="form-group">
+              <label for="payerName">Full Name</label>
+              <input
+                type="text"
+                id="payerName"
+                name="payerName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="payerPhone">Your Phone Number</label>
+              <input
+                type="tel"
+                id="payerPhone"
+                name="payerPhone"
+                placeholder="Enter your phone number"
+                pattern="(0[17][0-9]{8}|254[17][0-9]{8}|\+254[17][0-9]{8})"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="paymentCategory">Payment Category</label>
+              <select id="paymentCategory" name="paymentCategory" required>
+                <option value="">Select a service</option>
+                <option>Consultation Fees</option>
+                <option>Laboratory Tests & Services</option>
+                <option>Medication & Pharmacy</option>
+                <option>Appointment Booking Fees</option>
+                <option>Antenatal Care (ANC) Services</option>
+                <option>Maternal & Child Healthcare</option>
+                <option>Medical Procedures & Treatment</option>
+                <option>Other Healthcare Services</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="paymentAmount">Amount (KES)</label>
+              <input
+                type="number"
+                id="paymentAmount"
+                name="paymentAmount"
+                placeholder="Enter amount"
+                min="1"
+                step="1"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Choose payment method</option>
+                <option value="mpesa">Personal M-Pesa</option>
+                <option value="paybill">Equity PayBill</option>
+                <option value="bank">Direct Equity Bank Transfer</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Continue to Payment
+            </button>
+
+            <p class="form-notice">
+              Your payment is not complete until the transaction has been
+              verified by MediTrust Health Centre.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section transaction-section" id="payment-verification">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-tag">PAYMENT CONFIRMATION</span>
+            <h2>Submit Your Payment Reference</h2>
+            <p>
+              Already paid? Submit your transaction details for verification by
+              our payment team.
+            </p>
+          </div>
+
+          <form id="transactionForm" class="payment-form">
+            <div class="form-group">
+              <label for="transactionName">Full Name</label>
+              <input
+                type="text"
+                id="transactionName"
+                name="transactionName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="transactionPhone"
+                >Phone Number Used for Payment</label
+              >
+              <input
+                type="tel"
+                id="transactionPhone"
+                name="transactionPhone"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="transactionCode"
+                >M-Pesa or Bank Transaction Code</label
+              >
+              <input
+                type="text"
+                id="transactionCode"
+                name="transactionCode"
+                placeholder="Enter your transaction reference"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="transactionAmount">Amount Paid (KES)</label>
+              <input
+                type="number"
+                id="transactionAmount"
+                name="transactionAmount"
+                min="1"
+                step="1"
+                placeholder="Enter amount paid"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="transactionMethod">Payment Method</label>
+              <select id="transactionMethod" name="transactionMethod" required>
+                <option value="">Select payment method</option>
+                <option value="mpesa">Personal M-Pesa</option>
+                <option value="paybill">Equity PayBill</option>
+                <option value="bank">Direct Equity Bank Transfer</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Submit for Verification
+            </button>
+
+            <p class="form-notice">
+              Submitting a transaction reference does not confirm payment. Your
+              payment remains pending until MediTrust verifies it against the
+              relevant payment records.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="payment-security section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-tag">PAYMENT SAFETY</span>
+            <h2>Pay Safely and Keep Your Receipt</h2>
+            <p>
+              Always verify the payment details before confirming a transaction.
+              Never share your M-Pesa PIN, password or OTP with anyone.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          &copy; <span id="currentYear"></span>
+          MediTrust Health Centre. All rights reserved.
+        </p>
+        <p>Kakuma, Turkana County, Kenya.</p>
+      </div>
+    </footer>
+  </body>
+</html>

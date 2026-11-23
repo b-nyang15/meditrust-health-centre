@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact MediTrust Health Centre in Kakuma, Turkana County, Kenya, for general enquiries and community health information."
+    />
+    <title>Contact Us | MediTrust Health Centre</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a href="index.html" class="brand">
+          <span class="brand-icon">✚</span>
+          <span class="brand-name">MediTrust<small>HEALTH CENTRE</small></span>
+        </a>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="health-education.html">Health Education</a>
+          <a href="team.html">Our Team</a>
+          <a href="payments.html">Payments</a>
+          <a href="contact.html" class="nav-cta active" aria-current="page">
+            Contact Us
+          </a>
+        </nav>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+            aria-pressed="false"
+          >
+            🌙
+          </button>
+
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mainNav"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">We Would Love to Hear From You</span>
+          <h1>Contact Us</h1>
+          <p>
+            Contact MediTrust Health Centre for general enquiries, community
+            health information and partnership opportunities.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Connect With MediTrust</span>
+            <h2>Let's Start a Conversation</h2>
+            <p>
+              We welcome enquiries, community feedback and partnership
+              discussions.
+            </p>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-information">
+              <div class="contact-info-card">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <h3>Our Location</h3>
+                  <p>Kakuma, Turkana County, Kenya</p>
+                </div>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-icon">✉️</div>
+                <div>
+                  <h3>General Enquiries</h3>
+                  <p>
+                    Use the enquiry form to contact MediTrust Health Centre for
+                    general enquiries.
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-icon">💬</div>
+                <div>
+                  <h3>WhatsApp Enquiries</h3>
+                  <p>
+                    Contact our team through WhatsApp for general enquiries.
+                  </p>
+                  <a
+                    href="https://wa.me/254707623164?text=Hello%20MediTrust%20Health%20Centre"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Chat with us on WhatsApp →
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-icon">🤝</div>
+                <div>
+                  <h3>Partnerships</h3>
+                  <p>
+                    We welcome discussions about community health education and
+                    potential partnerships.
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-note">
+                <h3>Important Notice</h3>
+                <p>
+                  MediTrust Health Centre is committed to supporting community
+                  health and wellbeing in Kakuma, Turkana County, Kenya. For
+                  clinical services and appointments, please contact the
+                  facility directly to confirm availability.
+                </p>
+              </div>
+            </div>
+
+            <div class="card contact-form-card">
+              <span class="eyebrow">Send an Enquiry</span>
+              <h2>Get in Touch</h2>
+              <p>
+                Complete the form below to send your enquiry directly to our
+                team.
+              </p>
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="fullName"
+                    name="from_name"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    class="form-control"
+                    type="email"
+                    id="email"
+                    name="from_email"
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Enquiry Subject</label>
+                  <select
+                    class="form-control"
+                    id="subject"
+                    name="subject"
+                    required
+                  >
+                    <option value="">Select an enquiry subject</option>
+                    <option value="General enquiry">General enquiry</option>
+                    <option value="Community health">Community health</option>
+                    <option value="Health education">Health education</option>
+                    <option value="Partnership">Partnership opportunity</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Your Message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    placeholder="Write your enquiry here..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  Send Enquiry →
+                </button>
+                <p class="form-notice" id="formNotice" role="status">
+                  Your enquiry will be sent to our email team. Please do not
+                  include private medical information.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-light">
+        <div class="container section-heading">
+          <span class="eyebrow">Our Community</span>
+          <h2>Rooted in Kakuma</h2>
+          <p>
+            MediTrust Health Centre is committed to supporting community health,
+            wellbeing and health awareness in Kakuma, Turkana County, Kenya.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="grid-3">
+          <div>
+            <h3 style="color: white">MediTrust Health Centre</h3>
+            <p>Your Health, Our Priority.</p>
+            <p>
+              A community-focused healthcare facility serving Kakuma, Turkana
+              County, Kenya.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="color: white">Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="about.html">About Us</a></p>
+            <p><a href="services.html">Services</a></p>
+            <p><a href="health-education.html">Health Education</a></p>
+            <p><a href="team.html">Our Team</a></p>
+            <p><a href="payments.html">Payments</a></p>
+            <p><a href="contact.html">Contact Us</a></p>
+          </div>
+
+          <div>
+            <h3 style="color: white">Location</h3>
+            <p>Kakuma, Turkana County, Kenya</p>
+            <p>Health awareness. Community wellbeing.</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © <span id="year"></span> MediTrust Health Centre. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

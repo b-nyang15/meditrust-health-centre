@@ -9,6 +9,87 @@ const EMAILJS_PUBLIC_KEY = "Gr1X-fSCie41pbTTk";
 const EMAILJS_SERVICE_ID = "service_eooit3h";
 const EMAILJS_TEMPLATE_ID = "template_cscx4m7";
 const PAYMENT_TEMPLATE_ID = "template_w97k27x";
+
+// =========================================
+// SUPABASE CONFIGURATION
+// ========================================
+const SUPABASE_URL = "https://dbacmnqminkbrnequplq.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRiYWNtbnFtaW5rYnJuZXF1cGxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU0NDQ5OTAsImV4cCI6MjExMTAyMDk5MH0.EiUWCrMvA3Llrc4QLEmkX3Ml42Z0W_FfnZtDxWy2QWU";
+
+let supabaseClient = null;
+
+async function getSupabaseClient() {
+  if (supabaseClient) {
+    return supabaseClient;
+  }
+
+  const { createClient } =
+    await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
+
+  supabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+  return supabaseClient;
+}
+
+// =========================================
+// LOAD ACTIVE PAYMENT CATEGORIES
+// =========================================
+
+async function loadPaymentCategories() {
+  const categorySelects = [
+    document.getElementById("paymentCategory"),
+    document.getElementById("transactionCategory"),
+  ].filter(Boolean);
+
+  if (categorySelects.length === 0) return;
+
+  categorySelects.forEach((select) => {
+    select.innerHTML = '<option value="">Loading categories...</option>';
+    select.disabled = true;
+  });
+
+  try {
+    const supabase = await getSupabaseClient();
+
+    const { data, error } = await supabase
+      .from("payment_categories")
+      .select("name")
+      .eq("is_active", true)
+      .order("name", { ascending: true });
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      throw new Error("No active payment categories found.");
+    }
+
+    categorySelects.forEach((select) => {
+      select.innerHTML = '<option value="">Select a payment category</option>';
+
+      data.forEach(({ name }) => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
+
+      select.disabled = false;
+    });
+  } catch (error) {
+    console.error("Could not load payment categories:", error);
+
+    categorySelects.forEach((select) => {
+      select.innerHTML =
+        '<option value="">Payment categories unavailable</option>';
+      select.disabled = true;
+    });
+  }
+}
+
+loadPaymentCategories();
+
 // INITIALIZE EMAILJS
 
 if (typeof emailjs !== "undefined") {
@@ -281,7 +362,7 @@ if (paymentForm) {
 }
 
 // =========================================
-// PAYMENT REFERENCE EMAIL NOTIFICATION
+// PAYMENT REFERENCE SUBMISSION TO SUPABASE
 // =========================================
 
 const transactionForm = document.getElementById("transactionForm");
@@ -293,14 +374,6 @@ if (transactionForm) {
     const notice = transactionForm.querySelector(".form-notice");
     const submitButton = transactionForm.querySelector('button[type="submit"]');
 
-    if (typeof emailjs === "undefined") {
-      if (notice) {
-        notice.textContent =
-          "The email service could not load. Please try again later.";
-      }
-      return;
-    }
-
     const paymentMethod = document.getElementById("transactionMethod");
 
     const templateParams = {
@@ -308,10 +381,20 @@ if (transactionForm) {
       transactionPhone: document
         .getElementById("transactionPhone")
         .value.trim(),
+      transactionCategory: document.getElementById("transactionCategory").value,
       transactionCode: document.getElementById("transactionCode").value.trim(),
       transactionAmount: document.getElementById("transactionAmount").value,
       transactionMethod:
         paymentMethod.options[paymentMethod.selectedIndex].text,
+    };
+
+    const paymentPayload = {
+      payer_name: templateParams.transactionName,
+      payer_phone: templateParams.transactionPhone,
+      transaction_code: templateParams.transactionCode,
+      amount: Number(templateParams.transactionAmount),
+      payment_method: paymentMethod.value,
+      payment_category: templateParams.transactionCategory,
     };
 
     submitButton.disabled = true;
@@ -323,24 +406,57 @@ if (transactionForm) {
     }
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        PAYMENT_TEMPLATE_ID,
-        templateParams,
+      const supabase = await getSupabaseClient();
+
+      // Save payment reference in Supabase.
+      const { data, error } = await supabase.functions.invoke(
+        "submit-payment",
+        {
+          body: paymentPayload,
+        },
       );
 
+      if (error) {
+        throw error;
+      }
+
+      if (!data || !data.payment) {
+        throw new Error(
+          data?.error || "Payment submission could not be confirmed.",
+        );
+      }
+
+      // Send an email notification after successful database insertion.
+      let emailSent = false;
+
+      if (typeof emailjs !== "undefined") {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            PAYMENT_TEMPLATE_ID,
+            templateParams,
+          );
+
+          emailSent = true;
+        } catch (emailError) {
+          console.error("Payment notification email failed:", emailError);
+        }
+      }
+
       if (notice) {
-        notice.textContent =
-          "Your payment reference has been submitted successfully. Your payment is pending verification by MediTrust.";
+        notice.textContent = emailSent
+          ? "Your payment reference has been submitted successfully. Your payment is pending verification by MediTrust."
+          : "Your payment reference was saved successfully. Email notification could not be sent, but your submission is pending verification.";
       }
 
       transactionForm.reset();
     } catch (error) {
-      console.error("Payment notification error:", error);
+      console.error("Payment submission error:", error);
 
       if (notice) {
         notice.textContent =
-          "Your submission could not be sent. Please check your connection and try again.";
+          error.message ||
+          "Your payment reference could not be submitted. Please try again.";
       }
     } finally {
       submitButton.disabled = false;

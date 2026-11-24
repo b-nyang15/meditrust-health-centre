@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Private staff dashboard for MediTrust Health Centre."
+    />
+    <title>Staff Dashboard | MediTrust Health Centre</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <a href="index.html" class="brand">
+          <span class="brand-icon">✚</span>
+          <span class="brand-name">
+            MediTrust
+            <small>STAFF PORTAL</small>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="Dashboard navigation">
+          <a href="#overview" class="nav-link active">Overview</a>
+          <a href="#payments" class="nav-link">Payments</a>
+          <a href="#pending" class="nav-link">Pending Payments</a>
+          <a href="#history" class="nav-link">Payment History</a>
+          <a href="#refunds" class="nav-link">Refund Requests</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a
+            href="#"
+            id="viewPublicWebsite"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-globe"></i>
+            View Public Website
+          </a>
+          <button type="button" id="logoutButton" class="logout-button">
+            Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <div>
+            <span class="portal-label">MEDICAL ADMINISTRATION</span>
+            <h1>Dashboard Overview</h1>
+            <p>Welcome to the MediTrust staff administration portal.</p>
+          </div>
+
+          <div class="admin-profile">
+            <span class="admin-avatar">M</span>
+            <div>
+              <strong>Administrator</strong>
+              <small>Admin Account</small>
+            </div>
+          </div>
+        </header>
+
+        <section class="stats-grid" id="overview">
+          <article class="stat-card">
+            <span class="stat-label">Total Payments</span>
+            <h2 id="totalPayments">0</h2>
+            <p>All submitted transactions</p>
+          </article>
+
+          <article class="stat-card pending-card">
+            <span class="stat-label">Pending Payments</span>
+            <h2 id="pendingPayments">0</h2>
+            <p>Awaiting verification</p>
+          </article>
+
+          <article class="stat-card verified-card">
+            <span class="stat-label">Verified Payments</span>
+            <h2 id="verifiedPayments">0</h2>
+            <p>Successfully confirmed</p>
+          </article>
+
+          <article class="stat-card rejected-card">
+            <span class="stat-label">Rejected Payments</span>
+            <h2 id="rejectedPayments">0</h2>
+            <p>Not approved</p>
+          </article>
+        </section>
+
+        <section class="dashboard-section" id="payments">
+          <div class="section-heading">
+            <div>
+              <h2>Recent Payment Submissions</h2>
+              <p>Review the latest patient payment references.</p>
+            </div>
+            <button type="button" class="refresh-button" id="refreshPayments">
+              Refresh
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Payer</th>
+                  <th>Transaction Code</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody id="paymentsTableBody">
+                <tr>
+                  <td colspan="5" class="empty-state">
+                    No payment records loaded yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="quick-links">
+          <a href="#pending" id="pending">
+            <strong>Pending Payments</strong>
+            <span>Review payments awaiting confirmation.</span>
+          </a>
+
+          <a href="#history" id="history">
+            <strong>Payment History</strong>
+            <span>Review previously processed payments.</span>
+          </a>
+
+          <a href="#refunds" id="refunds">
+            <strong>Refund Requests</strong>
+            <span>Manage patient refund enquiries.</span>
+          </a>
+        </section>
+
+        <footer class="dashboard-footer">
+          &copy; <span id="dashboardYear"></span> MediTrust Health Centre.
+          Private staff administration portal.
+        </footer>
+      </main>
+    </div>
+
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

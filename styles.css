@@ -604,6 +604,7 @@ select:focus-visible {
   width: 100%;
   height: 510px;
   object-fit: cover;
+  object-position: center 20%;
   border-radius: 35px;
   box-shadow: var(--shadow-lg);
 }
@@ -1619,4 +1620,202 @@ body,
   }
 }
 
+/* SERVICES FEATURE IMAGE */
 
+.services-feature {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.services-feature img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .services-feature img {
+    height: 260px;
+  }
+}
+
+/* HEALTH EDUCATION FEATURE IMAGE */
+
+.education-feature {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.education-feature img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .education-feature img {
+    height: 260px;
+  }
+}
+
+/* HEALTHCARE TEAM FEATURE IMAGE */
+
+.team-feature {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* HEALTHCARE TEAM FEATURE IMAGE */
+
+.team-feature {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.team-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: initial;
+  object-position: initial;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* CONTACT PAGE ENHANCEMENTS */
+
+.contact-info-card {
+  padding: 24px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid rgba(18, 168, 157, 0.15);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mint);
+  border-radius: 14px;
+  font-size: 23px;
+}
+
+.contact-info-card h3 {
+  margin-bottom: 8px;
+}
+
+.contact-info-card p {
+  line-height: 1.7;
+}
+
+.contact-info-card a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-info-card a:hover {
+  text-decoration: underline;
+}
+
+/* CONTACT FORM CARD ENHANCEMENTS */
+
+.contact-form-card {
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* CONTACT FORM MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+  .contact-form-card {
+    padding: 23px;
+    border-radius: 18px;
+  }
+
+  .contact-form-card h2 {
+    font-size: 1.6rem;
+  }
+
+  .contact-form-card > p {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================================
+   CONTACT FORM NOTIFICATION
+========================================= */
+
+#formNotice {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+#formNotice:empty {
+  display: none;
+}
+
+/* LIGHT MODE */
+
+#formNotice.success {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+#formNotice.error {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+
+#formNotice.loading {
+  color: #1e40af;
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+}
+
+/* DARK MODE */
+
+html[data-theme="dark"] #formNotice.success {
+  color: #bbf7d0;
+  background: #14532d;
+  border: 1px solid #166534;
+}
+
+html[data-theme="dark"] #formNotice.error {
+  color: #fecaca;
+  background: #7f1d1d;
+  border: 1px solid #991b1b;
+}
+
+html[data-theme="dark"] #formNotice.loading {
+  color: #bfdbfe;
+  background: #1e3a8a;
+  border: 1px solid #1d4ed8;
+}

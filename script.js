@@ -242,6 +242,7 @@ if (contactForm && formNotice) {
     event.preventDefault();
 
     if (typeof emailjs === "undefined") {
+      formNotice.className = "error";
       formNotice.textContent =
         "The email service could not load. Please try again later.";
       return;
@@ -252,8 +253,8 @@ if (contactForm && formNotice) {
     submitButton.disabled = true;
     submitButton.textContent = "Sending enquiry...";
 
+    formNotice.className = "loading";
     formNotice.textContent = "Please wait while your enquiry is being sent.";
-
     try {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
@@ -261,13 +262,15 @@ if (contactForm && formNotice) {
         contactForm,
       );
 
+      formNotice.className = "success";
       formNotice.textContent =
-        "Thank you! Your enquiry has been sent successfully.";
+        "Thank you for contacting MediTrust Health Centre! Your enquiry has been received successfully. Our team will review your message and get back to you as soon as possible.";
 
       contactForm.reset();
     } catch (error) {
       console.error("EmailJS error:", error);
 
+      formNotice.className = "error";
       formNotice.textContent =
         "Sorry, your enquiry could not be sent. Please try again.";
     } finally {
